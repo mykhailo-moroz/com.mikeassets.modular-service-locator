@@ -1,0 +1,10 @@
+{
+  "name": "com.mikeassets.modular-service-locator",
+  "version": "0.0.1-preview",
+  "displayName": "Mike Assets - Modular Service Locator",
+  "description": "Provides a possibility to create a modular service locator",
+  "author": {
+    "name": "Mykhailo Moroz",
+    "email": "mickaelfrost@gmail.com"
+  }
+}
