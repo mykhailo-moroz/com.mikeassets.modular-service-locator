@@ -1,8 +1,6 @@
-using System;
 using System.Linq;
-using SolarSystem.Interfaces;
 
-namespace MikeAssets.ModularServiceLocator.Bindings.Providers
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public class ConstantBindingProvider : BindingProviderBase
     {

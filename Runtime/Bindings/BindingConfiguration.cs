@@ -1,7 +1,6 @@
-using ikeAssets.ModularServiceLocator.Enums;
-using MikeAssets.ModularServiceLocator.Interfaces;
+using ikeAssets.ModularServiceLocator.Runtime;
 
-namespace MikeAssets.ModularServiceLocator.Bindings
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public class BindingConfiguration : IBindingConfiguration
     {

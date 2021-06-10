@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using MikeAssets.ModularServiceLocator.Interfaces;
-using SolarSystem.Interfaces;
 
-namespace MikeAssets.ModularServiceLocator.Bindings.Providers
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public abstract class BindingProviderBase : IBindingProvider
     {

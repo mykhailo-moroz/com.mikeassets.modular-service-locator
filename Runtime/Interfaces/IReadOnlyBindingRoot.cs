@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using MikeAssets.ModularServiceLocator.Bindings;
 
-namespace SolarSystem.Interfaces
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public interface IReadOnlyBindingRoot
     {
-        List<IBinding> Bindings { get; }
+        List<IBinding> RootBindings { get; }
     }
 }

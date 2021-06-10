@@ -2,10 +2,8 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using MikeAssets.ModularServiceLocator.Interfaces;
-using MikeAssets.ModularServiceLocator.Modules;
 
-namespace MikeAssets.ModularServiceLocator.Bindings
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public abstract class BindingRoot : IBindingRoot
     {
@@ -18,7 +16,7 @@ namespace MikeAssets.ModularServiceLocator.Bindings
             m_modules = new ConcurrentDictionary<string, LocatorModule>();
         }
 
-        public List<IBinding> Bindings => m_bindings.Values.ToList();
+        public List<IBinding> RootBindings => m_bindings.Values.ToList();
 
         public virtual void AddBinding(IBinding binding)
         {
@@ -76,7 +74,7 @@ namespace MikeAssets.ModularServiceLocator.Bindings
             }
             
             module.Load();
-            var bindings = module.Bindings;
+            var bindings = module.RootBindings;
 
             foreach (var binding in bindings)
             {
@@ -91,7 +89,7 @@ namespace MikeAssets.ModularServiceLocator.Bindings
                 return;
             }
 
-            var bindings = module.Bindings;
+            var bindings = module.RootBindings;
 
             foreach (var binding in bindings)
             {

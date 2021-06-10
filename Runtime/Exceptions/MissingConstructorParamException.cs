@@ -1,6 +1,6 @@
 using System;
 
-namespace MikeAssets.ModularServiceLocator.Bindings.Exceptions
+namespace MikeAssets.ModularServiceLocator
 {
     public class MissingConstructorParamException : Exception
     {

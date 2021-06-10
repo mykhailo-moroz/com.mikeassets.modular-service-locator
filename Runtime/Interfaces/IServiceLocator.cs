@@ -1,6 +1,4 @@
-using MikeAssets.ModularServiceLocator.Modules;
-
-namespace MikeAssets.ModularServiceLocator.Interfaces
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public interface IServiceLocator : IResolutionRoot
     {

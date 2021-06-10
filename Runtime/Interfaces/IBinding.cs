@@ -1,7 +1,6 @@
 using System;
-using MikeAssets.ModularServiceLocator.Interfaces;
 
-namespace MikeAssets.ModularServiceLocator.Bindings
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public interface IBinding
     {

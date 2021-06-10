@@ -1,14 +1,11 @@
-using MikeAssets.ModularServiceLocator.Bindings;
-using MikeAssets.ModularServiceLocator.Interfaces;
-using MikeAssets.ModularServiceLocator.Modules;
-using SolarSystem.Interfaces;
+using System.Collections.Generic;
 
-namespace MikeAssets.ModularServiceLocator.Locator
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public class ServiceLocator : BindingRoot, IServiceLocator
     {
         public IReadOnlyBindingRoot Root => this;
-        
+
         public bool IsModuleRegistered(string name)
         {
             return IsModuleExists(name);
@@ -30,5 +27,7 @@ namespace MikeAssets.ModularServiceLocator.Locator
 
             return m_bindings.TryGetValue(service, out var binding) ? binding.Configuration.Provider : null;
         }
+
+        public IList<IBinding> Bindings => RootBindings;
     }
 }

@@ -1,8 +1,6 @@
-using ikeAssets.ModularServiceLocator.Enums;
-using MikeAssets.ModularServiceLocator.Bindings.Providers;
-using MikeAssets.ModularServiceLocator.Interfaces;
+using ikeAssets.ModularServiceLocator.Runtime;
 
-namespace MikeAssets.ModularServiceLocator.Bindings
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public class BindingBuilder<T> : BindingBuilderBase, IBindingBuilder<T>
     {
@@ -31,6 +29,18 @@ namespace MikeAssets.ModularServiceLocator.Bindings
             
             provider.Contracts.Add(service);
 
+            m_configuration.Provider = provider;
+        }
+
+        public void ToSingletone<TImplementation>() where TImplementation : T
+        {
+            m_configuration.BindingType = BindingType.Constant;
+
+            var implementationType = typeof(TImplementation);
+            var service = typeof(T);
+            var provider = new SingletoneBindingProvider(implementationType);
+            
+            provider.Contracts.Add(service);
             m_configuration.Provider = provider;
         }
     }
@@ -65,6 +75,21 @@ namespace MikeAssets.ModularServiceLocator.Bindings
             var service2 = typeof(T2);
             
             var provider = new ConstantBindingProvider(constant);
+            provider.Contracts.Add(service1);
+            provider.Contracts.Add(service2);
+
+            m_configuration.Provider = provider;
+        }
+
+        public void ToSingletone<TImplementation>() where TImplementation : T1, T2
+        {
+            m_configuration.BindingType = BindingType.Constant;
+            
+            var service1 = typeof(T1);
+            var service2 = typeof(T2);
+            
+            var implementationType = typeof(TImplementation);
+            var provider = new SingletoneBindingProvider(implementationType);
             provider.Contracts.Add(service1);
             provider.Contracts.Add(service2);
 

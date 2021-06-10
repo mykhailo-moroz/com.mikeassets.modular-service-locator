@@ -1,6 +1,4 @@
-using MikeAssets.ModularServiceLocator.Bindings;
-
-namespace MikeAssets.ModularServiceLocator.Modules
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public abstract class LocatorModule : BindingRoot
     {

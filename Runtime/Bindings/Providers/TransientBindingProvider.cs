@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MikeAssets.ModularServiceLocator.Bindings.Exceptions;
-using SolarSystem.Interfaces;
 
-namespace MikeAssets.ModularServiceLocator.Bindings.Providers
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public class TransientBindingProvider : BindingProviderBase
     {
@@ -27,7 +25,7 @@ namespace MikeAssets.ModularServiceLocator.Bindings.Providers
 
             var constructor = constructors.OrderBy(ct => ct.GetParameters().Length).First();
             var constructorParams = constructor.GetParameters().ToDictionary(pr => pr.Name, pr => pr.ParameterType);
-            var bindings = request.Root.Bindings;
+            var bindings = request.Root.RootBindings;
 
             if (!constructorParams.Any())
             {
@@ -41,6 +39,11 @@ namespace MikeAssets.ModularServiceLocator.Bindings.Providers
                 if (bindings.All(bi => bi.Service != param.Value))
                 {
                     throw new MissingConstructorParamException(request.Service, param.Key);
+                }
+
+                if (param.Value == request.Service)
+                {
+                    throw new CyclicDependencyException(param.Value, request.Service);
                 }
 
                 var binding = bindings.First(bi => bi.Service == param.Value);

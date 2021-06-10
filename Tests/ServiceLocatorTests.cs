@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using MikeAssets.ModularServiceLocator.Locator;
-using MikeAssets.ModularServiceLocator.Static;
+﻿using MikeAssets.ModularServiceLocator.Runtime;
 using NUnit.Framework;
-using UnityEngine.TestTools;
 
 namespace MikeAssets.ModularServiceLocator.Tests
 {

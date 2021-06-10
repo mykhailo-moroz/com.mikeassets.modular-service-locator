@@ -1,6 +1,6 @@
 using System;
 
-namespace SolarSystem.Interfaces
+namespace MikeAssets.ModularServiceLocator.Runtime
 {
     public interface IResolveRequest
     {
