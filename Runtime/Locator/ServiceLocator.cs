@@ -13,12 +13,12 @@ namespace MikeAssets.ModularServiceLocator.Runtime
 
         public void RegisterModule(LocatorModule module)
         {
-            base.RegisterModule(module);
+            RegisterModuleInternal(module);
         }
 
         public void UnregisterModule(string name)
         {
-            base.UnregisterModule(name);
+            UnregisterModuleInternal(name);
         }
 
         public IBindingProvider ResolveProvider<T>()

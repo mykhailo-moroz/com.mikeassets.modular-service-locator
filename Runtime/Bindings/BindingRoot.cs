@@ -66,7 +66,7 @@ namespace MikeAssets.ModularServiceLocator.Runtime
             return m_modules.ContainsKey(name);
         }
         
-        protected virtual void RegisterModule(LocatorModule module)
+        protected virtual void RegisterModuleInternal(LocatorModule module)
         {
             if (!m_modules.TryAdd(module.Name, module))
             {
@@ -82,7 +82,7 @@ namespace MikeAssets.ModularServiceLocator.Runtime
             }
         }
 
-        protected virtual void UnregisterModule(string name)
+        protected virtual void UnregisterModuleInternal(string name)
         {
             if (!m_modules.TryGetValue(name, out var module))
             {
