@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace MikeAssets.ModularServiceLocator.Runtime
 {
@@ -7,6 +8,8 @@ namespace MikeAssets.ModularServiceLocator.Runtime
     {
         ConcurrentBag<Type> Contracts { get; }
 
+        Dictionary<string, Type> GetConstructorParams();
+        
         object ResolveValue(IResolveRequest request);
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MikeAssets.ModularServiceLocator.Runtime
@@ -14,6 +16,11 @@ namespace MikeAssets.ModularServiceLocator.Runtime
         public override object ResolveValue(IResolveRequest request)
         {
             return Contracts.Contains(request.Service) ? m_service : null;
+        }
+
+        public override Dictionary<string, Type> GetConstructorParams()
+        {
+            return null;
         }
     }
 }

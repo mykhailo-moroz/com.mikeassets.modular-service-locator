@@ -21,41 +21,40 @@ namespace MikeAssets.ModularServiceLocator.Runtime
                 return null;
             }
 
+            if (request.IsCyclic(request.Service))
+            {
+                throw new CyclicDependencyException(request.Service);
+            }
+            
             var constructors = Implementation.GetConstructors(BindingFlags.Instance | BindingFlags.Public);
-
+            
             var constructor = constructors.OrderBy(ct => ct.GetParameters().Length).First();
             var constructorParams = constructor.GetParameters().ToDictionary(pr => pr.Name, pr => pr.ParameterType);
             var bindings = request.Root.RootBindings;
 
-            if (!constructorParams.Any())
+            if (!constructorParams.Any() && request.ChildRequests == null)
             {
                 return constructor.Invoke(null);
             }
-            
-            var parameters = new Dictionary<string, object>();
-            
-            foreach (var param in constructorParams)
+
+            var parameters = new List<object>();
+
+            if (request.ChildRequests.Any())
             {
-                if (bindings.All(bi => bi.Service != param.Value))
-                {
-                    throw new MissingConstructorParamException(request.Service, param.Key);
-                }
-
-                if (param.Value == request.Service)
-                {
-                    throw new CyclicDependencyException(param.Value, request.Service);
-                }
-
-                var binding = bindings.First(bi => bi.Service == param.Value);
-                var resolutionProvider = binding.Configuration.Provider;
-                var resolutionRequest = new ResolveRequest(request.Root, param.Value);
-                
-                parameters.Add(param.Key, resolutionProvider.ResolveValue(resolutionRequest));
+                parameters.AddRange(from req in request.ChildRequests let binding = bindings.First(bi => bi.Service == req.Service) let resolutionProvider = binding.Configuration.Provider select resolutionProvider.ResolveValue(req));
             }
 
-            var instance = constructor.Invoke(parameters.Values.ToArray());
+            var instance = constructor.Invoke(parameters.ToArray());
             
             return instance;
+        }
+
+        public override Dictionary<string, Type> GetConstructorParams()
+        {
+            var constructors = Implementation.GetConstructors(BindingFlags.Instance | BindingFlags.Public);
+            
+            var constructor = constructors.OrderBy(ct => ct.GetParameters().Length).First();
+            return constructor.GetParameters().ToDictionary(pr => pr.Name, pr => pr.ParameterType);
         }
     }
 }
