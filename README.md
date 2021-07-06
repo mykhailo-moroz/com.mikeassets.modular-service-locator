@@ -1,4 +1,8 @@
 # com.mikeassets.modular-service-locator
+
+### What is dependency injection?
+Dependency Injection is a design pattern that reduces hard-coded dependencies between your classes by injecting these dependencies at run-time, instead of during design-time. Technically, Dependency Injection is a mechanism that allows the implementation of another, more high-level, design pattern called Inversion of Control. The purpose of both patterns is to reduce hard-coded dependencies (or ‘coupling’) between your classes.
+
 Modular service locator for Unity
 
 [![Issues](https://img.shields.io/github/issues/StansAssets/com.stansassets.foundation)](https://github.com/mykhailo-moroz/com.mikeassets.modular-service-locator/issues)
