@@ -7,7 +7,7 @@ Dependency Injection is a design pattern that reduces hard-coded dependencies be
 
 [API Reference](https://github.com/mykhailo-moroz/com.mikeassets.modular-service-locator/wiki/API-References) | [Wiki](https://github.com/mykhailo-moroz/com.mikeassets.modular-service-locator/wiki)
 
-[![Issues](https://img.shields.io/github/issues/StansAssets/com.stansassets.foundation)](https://github.com/mykhailo-moroz/com.mikeassets.modular-service-locator/issues)
+[Issues](https://github.com/mykhailo-moroz/com.mikeassets.modular-service-locator/issues)
 
 ### Install from a Git URL
 Yoy can install this package via Git URL. To load a package from a Git URL:
